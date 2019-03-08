@@ -26,7 +26,7 @@
       <div class="row">
         <div class="col-sm-12">
           <div class="card">
-            <div class="card-header">
+            <div class="card-header" v-bind:class="formSubmitClass">
               {{ event.eventDate }}
             </div>
             <div class="card-block">
@@ -39,7 +39,7 @@
               <form class="form-inline" v-on:submit.prevent="formSubmitted">
                 <input type="text" id="nameInput" class="form-control mb-2 mr-sm-2 mb-sm-0" placeholder="Jane Doe"
                   v-model="newNameText">
-                <input type="submit" class="btn btn-primary"></input>
+                <input type="submit" v-bind:class="formSubmitClass" class="btn btn-primary"></input>
               </form>
               {{ newNameText }}
             </div>
@@ -49,21 +49,26 @@
 
       <div class="row">
         <div class="col-sm-12">
-          <div>
-            <div class="card-success rounded name-box" v-for="name in guestName">
-              {{ name }}
+          <div class="card">
+            <div class="card-header">
+              Attending ({{ guestName.length }})
             </div>
-          </div>
-          <div>
-            <h4>No names added yet...</h4>
-            {{ guestName }}
+            <div class="card-block">
+              <div v-if="guestName.length > 0">
+                <div class="card-success rounded name-box" v-for="name in guestName">
+                  {{ name }}
+                </div>
+              </div>
+              <!-- v-else attribute can be used only if an else-element follows directly the if-element -->
+              <div v-else>
+                <h4>No names added yet...</h4>
+                <!-- {{ guestName }} -->
+              </div>
+            </div>
           </div>
         </div>
       </div>
-
     </div>
-  </div>
-  </div>
   </div>
 
   <script src="app.js"></script>
