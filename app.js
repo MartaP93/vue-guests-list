@@ -9,7 +9,7 @@ new Vue({
             eventDescription: "It's back! This years summer festival will be in the beautiful countryside featuring our best line up ever!"
         },
         newNameText: '',
-        guestName: [],
+        guestName: ['James', 'Chris', 'Sam'],
         formSubmitClass: "",
         appStyles: {
             marginTop: '25px'
