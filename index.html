@@ -57,8 +57,8 @@
             </div>
             <div class="card-block">
               <div v-if="guestName.length > 0">
-                <div class="card-success rounded name-box" v-for="name in sortName">
-                  {{ name | formatName }}
+                <div class="card-success rounded name-box" v-for="(name, index) in sortName" v-bind:key="name">
+                  {{ name | formatName }} ({{ index + 1 }})
                 </div>
               </div>
               <!-- v-else attribute can be used only if an else-element follows directly the if-element -->
