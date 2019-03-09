@@ -26,7 +26,7 @@
       <div class="row" v-bind:style="appStyles">
         <div class="col-sm-12">
           <div class="card">
-            <div class="card-header" v-bind:class="formSubmitClass">
+            <div class="card-header">
               {{ event.eventDate }}
             </div>
             <div class="card-block">
@@ -37,9 +37,9 @@
 
               <!-- .prevent - prevent from loosing of the data when the page is refreshed -->
               <form class="form-inline" v-on:submit.prevent="formSubmitted">
-                <input type="text" id="nameInput" class="form-control mb-2 mr-sm-2 mb-sm-0" placeholder="Jane Doe"
+                <input type="text" id="nameInput" class="form-control mb-2 mr-sm-2 mb-sm-0" placeholder="Enter name"
                   v-model="newNameText">
-                <input type="submit" v-bind:class="formSubmitClass" class="btn btn-primary"></input>
+                <input type="submit" class="btn btn-primary"></input>
               </form>
               {{ newNameText }}
             </div>
@@ -51,14 +51,14 @@
         <div class="col-sm-12">
           <div class="card">
             <div class="card-header">
-              Attending ({{ guestName.length }})
+              Attending ({{ guestName.length }} / {{ eventCapacity }})
+              <br />
+              <progress v-bind:style="{width: eventCapacityPercentage + '%'}"></progress>
             </div>
             <div class="card-block">
               <div v-if="guestName.length > 0">
-                <div class="card-success rounded name-box" v-for="name in guestName">
-                  {{ name.toLowerCase() + ' Is awesome!' }}
-                  {{ 5/2 }}
-                  {{ Math.random() }}
+                <div class="card-success rounded name-box" v-for="name in sortName">
+                  {{ name | formatName }}
                 </div>
               </div>
               <!-- v-else attribute can be used only if an else-element follows directly the if-element -->
